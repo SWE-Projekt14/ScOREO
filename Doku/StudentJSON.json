@@ -1,0 +1,55 @@
+{
+    "_id": "xkjhsdgbsg",
+    "rev": "randomshit",
+    "Vorname": "Max",
+    "Nachname": "Mustermann",
+    "Geburtsdatum": 1994-01-02,
+    "Kurs": "TINF13IN",
+    // Array mit allen Vorlesungen
+    "Vorlesungen": 
+    [
+        {"Theoretische Informatik": {
+            "Testate": 
+            [
+                // Array mit den einzelnen Testaten einer Vorlesung
+                {"Titel1": 
+                    [
+                        {"Fragerunde": {
+                            "Impact": 0.5,
+                            "H2Bewertung": 60,
+                            "Score": 0.8,
+                            "Rate": 1.972346
+                        }}
+                        {"Folien": {
+                            "Impact": 0.5,
+                            "H2Bewertung": 60,
+                            "Score": 0.8,
+                            "Rate": 1.972346
+                        }}
+                    ],
+                    "Gesamtbewertung": 1.23445
+                    
+                }
+                {"Vortrag2": {
+                    "Titel": "Blabla2",
+                    "Bewertungen":
+                    [
+                        {"Fragerunde": {
+                            "Impact": 0.5,
+                            "H2Bewertung": 60,
+                            "Score": 0.8,
+                            "Rate": 1.972346
+                        }}
+                        {"Folien": {
+                            "Impact": 0.5,
+                            "H2Bewertung": 60,
+                            "Score": 0.8,
+                            "Rate": 1.972346
+                        }}
+                    ],
+                    "Gesamtbewertung": 2.235245
+                }}                  
+            ]
+        }}
+    ]
+}
