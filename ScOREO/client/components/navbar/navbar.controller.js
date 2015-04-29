@@ -8,6 +8,9 @@ angular.module('softwareEngineeringApp')
     },{
       'title': 'Dozent',
       'link': '/dozent'
+    },{
+      'title': 'Neues Testat',
+      'link': '/neuesTestat'
     }];
 
     $scope.isCollapsed = true;
