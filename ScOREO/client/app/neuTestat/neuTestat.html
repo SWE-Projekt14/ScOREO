@@ -10,15 +10,49 @@
     <div>
       <label>Titel:</label>
       <input type="text" class="form-control" placeholder="Testattitel" ng-model="newTestat">
-    </div>
+    </div>    
+      
     <form>
-      <div>
+      <div class="form-group" data-ng-repeat="impact in impacts">
+    <!--    <div>   -->    
+          
         <label>Kriterien:</label>
-        <input type="text" class="form-control" placeholder="Kriterium 1" ng-model="newKriterium">
-        <label class="radio-inline"><input type="radio" name="optradio" ng-model="isH2">H2</label>
-        <label class="radio-inline"><input type="radio" name="optradio" ng-model="isScore">Score</label>
+        <input type="text" class="form-control" placeholder="Kriterium 1" ng-model="newKriterium.value">
+
+  <p>        
+          
+<div class="row">
+  <div class="col-md-2" ng-init="isH2=true">
+   <!--! <div ng-init="isH2=true"> -->
+        <label class="radio-inline"><input type="radio" name="optradio" ng-model="isH2" ng-value="true" >H2</label>
+        <label class="radio-inline"><input type="radio" name="optradio" ng-model="isH2" ng-value="false">Score</label>     
+    </div>
+  <div class="col-md-4">
+    <div>
+    <!--<div class="form-group" data-ng-repeat="impact in impacts"> -->
+        <label for="impact" ng-show="showImpactLabel(impact)">Impact</label>
+        <p class="input-group"> 
+        <input type="text" ng-model="impact.value" class="form-control" placeholder="Impact">
+          <span class="input-group-btn">
+        <button ng-show="showAddImpact(impact)" class="btn btn-primary" ng-click="addNewImpact()">Impact Hinzufügen</button>
+        <button ng-show="showDeleteImpact(impact)" class="btn btn-primary" ng-click="deleteNewImpact()">Impact Löschen</button>
+           </span>
+        </p>
+     </p>       
+    </div>        
+    </div>
+    
+    
+</div>          
+          
+     
       </div>
     </form>
+      
+
+      
+ 
+ 
     <div class="form-group">
       <label for="sel1">Jahrgang:</label>
       <select class="form-control" id="sel1">
@@ -37,7 +71,18 @@
       </select>
     </div>
   </form>
-  
+ 
+
+    
+    <p class="input-group">
+      <input type="text" class="form-control" placeholder="Testat Name" ng-model="newTestat">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" ng-click="addTestat()">Add New</button>
+      </span>
+    </p>   
+    
+    
+    
 <footer class="footer">
   <div class="container">
       
