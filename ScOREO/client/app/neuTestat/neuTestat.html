@@ -13,14 +13,18 @@
     </div>    
       
     <form>
-      <div class="form-group" data-ng-repeat="impact in impacts">
-    <!--    <div>   -->    
           
-        <label>Kriterien:</label>
-        <input type="text" class="form-control" placeholder="Kriterium 1" ng-model="newKriterium.value">
-
+      <div class="form-group">
+          
+          
+          
+        <div class="form-group" data-ng-repeat="kriterium in kriteriums">      
+        <label for="kriterium">Kriterien:</label>
+       <!-- <input type="text" class="form-control" placeholder="Kriterium 1" ng-model="newKriterium.value"> -->
+        <input type="text" ng-model="kriterium.value" class="form-control" placeholder="Kriterium">
+         </div>
   <p>        
-          
+
 <div class="row">
   <div class="col-md-2" ng-init="isH2=true">
    <!--! <div ng-init="isH2=true"> -->
@@ -28,9 +32,9 @@
         <label class="radio-inline"><input type="radio" name="optradio" ng-model="isH2" ng-value="false">Score</label>     
     </div>
   <div class="col-md-4">
-    <div>
-    <!--<div class="form-group" data-ng-repeat="impact in impacts"> -->
-        <label for="impact" ng-show="showImpactLabel(impact)">Impact</label>
+    <div class="form-group">
+    <div class="form-group" data-ng-repeat="impact in impacts">
+        <label for="impact" ng-show="showImpactLabel(impact)">Impact2</label>
         <p class="input-group"> 
         <input type="text" ng-model="impact.value" class="form-control" placeholder="Impact">
           <span class="input-group-btn">

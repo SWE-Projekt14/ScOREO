@@ -5,9 +5,9 @@ var mongoose = require('mongoose'),
 
 var TestateSchema = new Schema({
   name: String,
-  kriterien: [],
+  kriteriums: [],
   isChoosen: Boolean,
-  H2: Boolean,
+  H2s: [],
   impacts: [],
   Score: Boolean,
   info: String,
