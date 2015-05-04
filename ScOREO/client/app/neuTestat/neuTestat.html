@@ -12,45 +12,57 @@
       <input type="text" class="form-control" placeholder="Testattitel" ng-model="newTestat">
     </div>    
       
-    <form>
+    <form class="">  
+    <div class="row">
+        
+     <!--   <div class="form-group" data-ng-repeat="krit_choose_impact in krit_choose_impacts"> -->
+         <div class="col-sm-2" class="">
+      <div class="" data-ng-repeat="kriterium in kriteriums">
           
-      <div class="form-group">
-          
-          
-          
-        <div class="form-group" data-ng-repeat="kriterium in kriteriums">      
-        <label for="kriterium">Kriterien:</label>
+           <p class="input-group">
+      <!--  <div>     -->         
+           
+       <!-- <label for="kriterium"></label> -->
        <!-- <input type="text" class="form-control" placeholder="Kriterium 1" ng-model="newKriterium.value"> -->
         <input type="text" ng-model="kriterium.value" class="form-control" placeholder="Kriterium">
+          </p>
          </div>
-  <p>        
-
-<div class="row">
-  <div class="col-md-2" ng-init="isH2=true">
+             
+        </div> 
+        
+         
+                     <div class="col-sm-2" class="">
+          <div class="" data-ng-repeat="isH2 in isH2s">
+               <p class="input-group">
    <!--! <div ng-init="isH2=true"> -->
-        <label class="radio-inline"><input type="radio" name="optradio" ng-model="isH2" ng-value="true" >H2</label>
-        <label class="radio-inline"><input type="radio" name="optradio" ng-model="isH2" ng-value="false">Score</label>     
+    <!--    <label class="radio-inline"><input type="radio" name="optradio" ng-model="isH2" ng-value="true" >H2</label>
+        <label class="radio-inline"><input type="radio" name="optradio" ng-model="isH2" ng-value="false">Score</label>  -->
+           <!-- <label for="sel1"></label> -->
+      <select class="form-control" id="sel1" ng-model="isH2.value"  >
+        <option value="H2">H2</option>
+        <option value="Score">Score</option>
+      </select>    
+              </p>
     </div>
-  <div class="col-md-4">
-    <div class="form-group">
-    <div class="form-group" data-ng-repeat="impact in impacts">
-        <label for="impact" ng-show="showImpactLabel(impact)">Impact2</label>
+                         </div>
+        
+  
+             <div class="col-sm-6" class="">
+    <div class="" data-ng-repeat="impact in impacts">
+      <!--  <label for="impact" ng-show="showImpactLabel(impact)">Impact2</label> -->
         <p class="input-group"> 
         <input type="text" ng-model="impact.value" class="form-control" placeholder="Impact">
           <span class="input-group-btn">
-        <button ng-show="showAddImpact(impact)" class="btn btn-primary" ng-click="addNewImpact()">Impact Hinzufügen</button>
-        <button ng-show="showDeleteImpact(impact)" class="btn btn-primary" ng-click="deleteNewImpact()">Impact Löschen</button>
+        <button ng-show="showAddImpact(impact)" class="btn btn-primary" ng-click="addNewImpact()">Impact hinzufügen</button>
+        <button ng-show="showDeleteImpact(impact)" class="btn btn-primary" ng-click="deleteNewImpact()">Impact löschen</button>
            </span>
         </p>
-     </p>       
-    </div>        
-    </div>
-    
-    
-</div>          
-          
-     
+        
+                 
       </div>
+            </div>
+        <!-- </div> -->
+    </div>    
     </form>
       
 

@@ -16,12 +16,15 @@ $scope.showAddChoice = function(choice) {
        
 $scope.impacts = [{id: 'impact1'}];
 $scope.kriteriums = [{id: 'kriterium1'}];
-$scope.isH2s = [{id: 'isH21'}];    
+$scope.isH2s = [{id: 'isH21'}];
+$scope.krit_choose_impacts = [{id: 'krit_choose_impact1'}];  
 $scope.addNewImpact = function() {
   var newItemNo = $scope.impacts.length+1;
-  $scope.impacts.push({'id':'impact'+newItemNo});
+
   $scope.kriteriums.push({'id':'kriterium'+newItemNo});
   $scope.isH2s.push({'id':'isH2'+newItemNo});
+  $scope.impacts.push({'id':'impact'+newItemNo});
+  $scope.krit_choose_impacts.push({'id':'krit_choose_impact'+newItemNo});
     
 };
 $scope.showAddImpact = function(impact) {
@@ -40,6 +43,7 @@ $scope.deleteNewImpact = function() {
   var newItemNo = $scope.impacts.length+1;
   $scope.impacts.pop({'id':'impact'+newItemNo});
   $scope.kriteriums.pop({'id':'kriterium'+newItemNo});
+  $scope.isH2s.pop({'id':'isH2'+newItemNo});    
 };    
 
 // --------------------------------------------    
@@ -66,12 +70,12 @@ $scope.addTestat = function() {
     $http.post('/api/testates', {name: $scope.newTestat, kriteriums:$scope.kriteriums, H2s:$scope.isH2s, impacts:$scope.impacts });
     console.log($scope.impacts);
     console.log($scope.kriteriums);
+    console.log($scope.isH2s);
     $scope.newTestat = '';
-    $scope.kriteriums = '';
     };
 
         
-    
+
     
   });
 

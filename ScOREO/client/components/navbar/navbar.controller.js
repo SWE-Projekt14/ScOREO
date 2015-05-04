@@ -11,6 +11,9 @@ angular.module('softwareEngineeringApp')
     },{
       'title': 'Neues Testat',
       'link': '/neuesTestat'
+    },{
+      'title': 'Verwalter',
+      'link': '/verwalter'
     }];
 
     $scope.isCollapsed = true;

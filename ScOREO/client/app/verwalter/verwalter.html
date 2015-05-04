@@ -1,0 +1,64 @@
+
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Studenten anlegen:</h1>
+    </div>
+  </div>
+
+    <form class="thing-form">
+        
+        
+        
+        
+        <div>
+        <label> Vorname des Studenten:</label>    
+        <input type="text" ng-model="vName" class="form-control" placeholder="Vorname">
+        </div>
+ 
+        <div>
+        <label> Nachname des Studenten:</label>    
+        <input type="text" ng-model="nName" class="form-control" placeholder="Nachname">
+        </div>        
+        
+        <div>
+        <label> Geburtsdatum des Studenten:</label>
+        <input type="text" ng-model="GebDatum" class="form-control" placeholder="Geburtsdatum (dd.mm.yyyy)">
+        </div>    
+        
+        <div>
+        <label> Geschlecht des Studenten:</label>
+        <select class="form-control" id="sel1" ng-model="stGeschl">
+        <option value="m">Männlich</option>
+        <option value="w">Weiblich</option>
+        </select>
+        </div>        
+        
+        <div>
+        <label> Kurs des Studenten:</label>
+        <select class="form-control" id="sel1" ng-model="stKurs">
+        <option>Kurs1</option>
+        <option>Kurs2</option>
+        </select>
+        </div>
+        
+        <div class="" data-ng-repeat="vorlesung in vorlesungen">
+        <label> Vorlesungen:</label>    
+        <p class="input-group">
+        <select ng-model="vorlesung.value" class="form-control" placeholder="Vorlesungen">
+        <option>Vorlesung1</option> 
+        <option>Vorlesung2</option>
+        </select>
+            <button ng-show="showAddVorlesung(vorlesung)" class="btn btn-primary" ng-click="addNewVorlesung()">Vorlesung Hinzufügen</button>
+            <button ng-show="showDeleteVorlesung(vorlesung)" class="btn btn-primary" ng-click="deleteNewVorlesung()">Vorlesung löschen</button>
+        </p>    
+        </div>        
+        
+        <div>
+        <button ng-click="addStudent()" class="btn btn-primary">Student hinzufügen</button>
+        </div>
+        
+    </form>
