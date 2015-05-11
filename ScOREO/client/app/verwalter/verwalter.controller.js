@@ -1,14 +1,10 @@
 'use strict';
 
 angular.module('softwareEngineeringApp')
-  .controller('VerwalterCtrl', function ($scope, $http, socket) {
-
+  .controller('VerwalterCtrl', function ($scope, $http, socket, Auth, $location) {
     
-// testblock  
 
-
-    
-    
+    // Funktion Studenten anlegen
     $scope.vorlesungen = [{id: 'vorlesung1'}];
     $scope.addNewVorlesung = function() {
         var newItemNo = $scope.vorlesungen.length+1;
@@ -36,7 +32,21 @@ angular.module('softwareEngineeringApp')
     }
             
     $http.post('/api/studentens', {vName: $scope.vName, nName: $scope.nName, GebDatum: $scope.GebDatum, stGeschl: $scope.stGeschl, stKurs: $scope.stKurs, vorlesungen: $scope.vorlesungen});
-    };
         
+        
+    console.log("test");
+//      $scope.submitted = true;
+        console.log($scope.user.role);
+      //if(form.$valid) {
+        Auth.createUser({
+          name: $scope.user.name,
+          email: $scope.user.email,
+          password: $scope.user.password,
+          role: $scope.user.role
+        })
+        console.log($scope.user.role);
+    };    
+    
+    
 
 });
