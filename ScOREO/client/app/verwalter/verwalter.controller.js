@@ -31,7 +31,7 @@ angular.module('softwareEngineeringApp')
         return;
     }
             
-    $http.post('/api/studentens', {vName: $scope.vName, nName: $scope.nName, GebDatum: $scope.GebDatum, stGeschl: $scope.stGeschl, stKurs: $scope.stKurs, vorlesungen: $scope.vorlesungen});
+    $http.post('/api/studentens', {vName: $scope.user.name, nName: $scope.nName, GebDatum: $scope.GebDatum, stGeschl: $scope.stGeschl, stKurs: $scope.stKurs, vorlesungen: $scope.vorlesungen});
         
         
     console.log("test");
@@ -45,6 +45,7 @@ angular.module('softwareEngineeringApp')
           role: $scope.user.role
         })
         console.log($scope.user.role);
+       // $http.post('/api/users', {role: $scope.user.role});
     };    
     
     

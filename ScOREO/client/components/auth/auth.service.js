@@ -19,7 +19,6 @@ angular.module('softwareEngineeringApp')
       login: function(user, callback) {
         var cb = callback || angular.noop;
         var deferred = $q.defer();
-
         $http.post('/auth/local', {
           email: user.email,
           password: user.password
