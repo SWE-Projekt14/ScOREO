@@ -34,9 +34,7 @@ angular.module('softwareEngineeringApp')
     $http.post('/api/studentens', {vName: $scope.user.name, nName: $scope.nName, GebDatum: $scope.GebDatum, stGeschl: $scope.stGeschl, stKurs: $scope.stKurs, vorlesungen: $scope.vorlesungen});
         
         
-    console.log("test");
 //      $scope.submitted = true;
-        console.log($scope.user.role);
       //if(form.$valid) {
         Auth.createUser({
           name: $scope.user.name,
@@ -44,8 +42,15 @@ angular.module('softwareEngineeringApp')
           password: $scope.user.password,
           role: $scope.user.role
         })
-        console.log($scope.user.role);
-       // $http.post('/api/users', {role: $scope.user.role});
+        $scope.user.name='';
+        $scope.nName = '';
+        $scope.GebDatum = '';
+        $scope.stGeschl = '';
+        $scope.stKurs = '';
+        $scope.vorlesungen = '';
+        $scope.user.email = '';
+        $scope.user.password = '';
+        
     };    
     
     

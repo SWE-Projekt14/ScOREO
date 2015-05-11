@@ -60,9 +60,9 @@ angular.module('softwareEngineeringApp')
 
         return User.save(user,
           function(data) {
-            $cookieStore.put('token', data.token);
+           // $cookieStore.put('token', data.token);
            // currentUser = User.get();
-            return cb(user);
+           // return cb(user);
           },
           function(err) {
             this.logout();
