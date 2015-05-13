@@ -12,8 +12,11 @@ angular.module('softwareEngineeringApp')
       'title': 'Neues Testat',
       'link': '/neuesTestat'
     },{
-      'title': 'Verwalter',
+      'title': 'Benutzer anlegen',
       'link': '/verwalter'
+    },{
+      'title': 'Kurs hinzufügen',
+      'link': '/Kurs'
     }];
 
     $scope.isCollapsed = true;

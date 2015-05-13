@@ -6,6 +6,10 @@ var crypto = require('crypto');
 
 var UserSchema = new Schema({
   name: String,
+  nName: String,
+  gebDatum: String,
+  stGeschl: String,
+  stKurs: String,
   email: { type: String, lowercase: true },
   role: {
     type: String,
@@ -13,7 +17,8 @@ var UserSchema = new Schema({
   },
   hashedPassword: String,
   provider: String,
-  salt: String
+  salt: String,
+  vorlesung: []
 });
 
 /**

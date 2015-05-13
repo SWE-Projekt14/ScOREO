@@ -8,22 +8,12 @@ var StudentenSchema = new Schema({
   nName: String,
   GebDatum: String,
   stGeschl: String, 
-  stKurs: String,    
+  stKurs: String, 
+  email: String,
+  role: String,
   vorlesungen: [],
   info: String,
-  active: Boolean,
-    
-// testblock
-  title: { type: String },
-  rating: String,
-  releaseYear: Number,
-  hasCreditCookie: Boolean
-    
-    
-    
-    
-    
-    
+  active: Boolean,  
 });
 
 module.exports = mongoose.model('Studenten', StudentenSchema);

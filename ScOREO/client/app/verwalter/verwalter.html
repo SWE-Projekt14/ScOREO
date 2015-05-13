@@ -1,130 +1,78 @@
-
-<div ng-include="'components/navbar/navbar.html'"></div>
-
-
+<div ng-include="'components/navbar/navbar.html'">
+</div>
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Studenten anlegen:</h1>
+      <h1 class="page-header">Benutzer anlegen:</h1>
     </div>
   </div>
-
-    <form class="thing-form">
-        
-      <form class="form" name="form"  novalidate>
-
-        <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
-                                            'has-error': form.name.$invalid && submitted }">
-          <label>Vorname des Studenten</label>
-
-          <input type="text" name="name" class="form-control" ng-model="user.name" placeholder="Vorname" required/>
-          <p class="help-block" ng-show="form.name.$error.required && submitted">
-            A name is required
-          </p>
-        </div>
-          
-        <div>
-        <label> Nachname des Studenten:</label>    
-        <input type="text" ng-model="nName" class="form-control" placeholder="Nachname">
-        </div> 
-          
-
-        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
-                                            'has-error': form.email.$invalid && submitted }">
-          <label>Email des Studenten (Log In - Email des Studenten)</label>
-
-          <input type="email" name="email" class="form-control" ng-model="user.email" placeholder="E-Mail"
-                 required
-                 mongoose-error/>
-          <p class="help-block" ng-show="form.email.$error.email && submitted">
-            Doesn't look like a valid email.
-          </p>
-          <p class="help-block" ng-show="form.email.$error.required && submitted">
-            What's your email address?
-          </p>
-          <p class="help-block" ng-show="form.email.$error.mongoose">
-            {{ errors.email }}
-          </p>
-        </div>
-
-        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
-                                            'has-error': form.password.$invalid && submitted }">
-          <label>Password (Log In - Passwort des Studenten)</label>
-
-          <input type="password" name="password" class="form-control" ng-model="user.password" placeholder="Password"
-                 ng-minlength="3"
-                 required
-                 mongoose-error/>
-          <p class="help-block"
-             ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
-            Password must be at least 3 characters.
-          </p>
-          <p class="help-block" ng-show="form.password.$error.mongoose">
-            {{ errors.password }}
-          </p>
-        </div>
-          
-          <label>Student oder Dozent?</label>
-         <!--<div class="form-group" ng-class="">
-
-          <input type="text" name="role" class="form-control" ng-model="user.role"
-                 required/>
-          <p class="help-block" ng-show="form.name.$error.required && submitted">
-            A name is required
-          </p>
-        </div>   -->       
-          
-          
-          
-          
-          <div class="form-group"> 
-          <select ng-model="user.role" class="form-control" placeholder="Role">
-          <option value="dozent">Dozent</option> 
-          <option value="student">Student</option>
-          </select>
-          </div>
-        
-        </form>  
-          
-
- 
-       
-        
-        <div>
-        <label> Geburtsdatum des Studenten:</label>
-        <input type="text" ng-model="GebDatum" class="form-control" placeholder="Geburtsdatum (dd.mm.yyyy)">
-        </div>    
-        
-        <div>
-        <label> Geschlecht des Studenten:</label>
-        <select class="form-control" id="sel1" ng-model="stGeschl">
+  <form class="thing-form">
+    <h4>Student oder Dozent?</h4>
+    <div class="form-group">
+      <select ng-model="user.role" class="form-control" placeholder="Role" ng-change="pruefeSelect()">
+        <option value="dozent">Dozent</option>
+        <option value="student">Student</option>
+      </select>
+    </div>
+    <div>
+      <h4> Geschlecht:</h4>
+      <select class="form-control" id="sel1" ng-model="user.geschlecht">
         <option value="m">Männlich</option>
         <option value="w">Weiblich</option>
-        </select>
-        </div>        
-        
-        <div>
-        <label> Kurs des Studenten:</label>
-        <select class="form-control" id="sel1" ng-model="stKurs">
-        <option>Kurs1</option>
-        <option>Kurs2</option>
-        </select>
-        </div>
-        
-        <div class="" data-ng-repeat="vorlesung in vorlesungen">
-        <label> Vorlesungen:</label>    
-        <p class="input-group">
-        <select ng-model="vorlesung.value" class="form-control" placeholder="Vorlesungen">
-        <option>Vorlesung1</option> 
-        <option>Vorlesung2</option>
-        </select>
-            <button ng-show="showAddVorlesung(vorlesung)" class="btn btn-primary" ng-click="addNewVorlesung()">Vorlesung Hinzufügen</button>
-            <button ng-show="showDeleteVorlesung(vorlesung)" class="btn btn-primary" ng-click="deleteNewVorlesung()">Vorlesung löschen</button>
-        </p>    
-        </div>        
-        
-        <div>
-        <button ng-click="addStudent()" class="btn btn-primary">Student hinzufügen</button>
-        </div>
-        
+      </select>
+    </div>
+    <form class="form" name="form" novalidate>
+      <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
+                                            'has-error': form.name.$invalid && submitted }">
+        <h4>Vorname:</h4>
+        <input type="text" name="name" class="form-control" ng-model="user.name" placeholder="Vorname" required/>
+        <p class="help-block" ng-show="form.name.$error.required && submitted">
+          A name is required
+        </p>
+      </div>
+      <div>
+        <h4> Nachname:</h4>
+        <input type="text" ng-model="user.nName" class="form-control" placeholder="Nachname">
+      </div>
+      <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                            'has-error': form.email.$invalid && submitted }">
+        <h4>Email:</h4>
+        <input type="email" name="email" class="form-control" ng-model="user.email" placeholder="E-Mail" required mongoose-error/>
+        <p class="help-block" ng-show="form.email.$error.email && submitted">
+          Doesn't look like a valid email.
+        </p>
+        <p class="help-block" ng-show="form.email.$error.required && submitted">
+          What's your email address?
+        </p>
+        <p class="help-block" ng-show="form.email.$error.mongoose">
+          {{ errors.email }}
+        </p>
+      </div>
+      <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
+                                            'has-error': form.password.$invalid && submitted }">
+        <h4>Passwort:</h4>
+        <input type="password" name="password" class="form-control" ng-model="user.password" placeholder="Password" ng-minlength="3" required mongoose-error/>
+        <p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
+          Password must be at least 3 characters.
+        </p>
+        <p class="help-block" ng-show="form.password.$error.mongoose">
+          {{ errors.password }}
+        </p>
+      </div>
     </form>
+    <div>
+      <h4> Geburtsdatum:</h4>
+      <input type="text" ng-model="user.GebDatum" class="form-control" placeholder="Geburtsdatum (dd.mm.yyyy)">
+    </div>
+    <div class="form-group" ng-hide="istStudent">
+      <h4>Kurs:</h4>
+      <select ng-model="user.kurs" class="form-control" placeholder="Role">
+        <option value="dozent">Dozent</option>
+        <option value="student">Student</option>
+      </select>
+    </div>
+    <h3></h3>
+    <div>
+      <button ng-click="addStudent()" class="btn btn-primary">Benutzer hinzufügen</button>
+    </div>
+  </form>

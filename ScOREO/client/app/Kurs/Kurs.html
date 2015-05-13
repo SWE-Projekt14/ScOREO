@@ -1,0 +1,17 @@
+<div ng-include="'components/navbar/navbar.html'">
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Kurs anlegen:</h1>
+    </div>
+  </div>
+  <form class="thing-form">
+    <div class="col-md-12">
+      <input type="text" ng-model="kurs.bezeichnung" class="form-control" placeholder="Kursbezeichnung">
+      <h3></h3>
+      <div>
+        <button ng-click="addStudent()" class="btn btn-primary">Kurs anlegen</button>
+      </div>
+    </div>
+  </form>

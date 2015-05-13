@@ -23,6 +23,7 @@ exports.show = function(req, res) {
 // Creates a new studenten in the DB.
 exports.create = function(req, res) {
   Studenten.create(req.body, function(err, studenten) {
+    console.log(studenten);
     if(err) { return handleError(res, err); }
     return res.json(201, studenten);
   });
