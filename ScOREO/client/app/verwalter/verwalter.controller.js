@@ -8,15 +8,23 @@ angular.module('softwareEngineeringApp')
       id: 'vorlesung1'
     }];
     $scope.istStudent = true;
+  $scope.alleKurse = [];
     $scope.pruefeSelect = function () {
-      console.log($scope.user.role);
       if ($scope.user.role == 'dozent') {
         $scope.istStudent = true;
       } else {
         $scope.istStudent = false;
       }
-      console.log($scope.istStudent);
     };
+  
+  $scope.getKurse = function () {
+    $http.get('/api/kurs').success(function (kurse) {
+      kurse.forEach(function(obj) {
+        $scope.alleKurse.push(obj.name);
+      });
+    });
+  };
+  
     $scope.addNewVorlesung = function () {
       var newItemNo = $scope.vorlesungen.length + 1;
 
@@ -44,7 +52,7 @@ angular.module('softwareEngineeringApp')
       if ($scope.vname === '') {
         return;
       }
-
+      
       Auth.createUser({
         name: $scope.user.name,
         email: $scope.user.email,
@@ -61,7 +69,6 @@ angular.module('softwareEngineeringApp')
       $scope.user.geschlecht = '';
       $scope.user.email = '';
       $scope.user.password = '';
-
     };
 
 

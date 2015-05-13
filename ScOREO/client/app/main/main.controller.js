@@ -7,10 +7,15 @@ angular.module('softwareEngineeringApp')
       vName: String,
       nName: String,
       gebDatum: Date,
-      eMail: String,
+      email: String,
       Vorlesungen: []
     };
 
+  $scope.getUserInfos = function () {
+    $http.get('/api/users/me').success(function(userInfos){
+      $scope.studentenInfos = userInfos;
+    });
+  };
     $scope.getCurrentUser = Auth.getCurrentUser;
 
     $http.get('/api/things').success(function (awesomeThings) {

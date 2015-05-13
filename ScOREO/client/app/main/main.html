@@ -1,28 +1,30 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="container">
-  
+<div class="container" ng-init="getUserInfos()">
   <div class="col-md-12">
     <h1 class="page-header">Hallo {{ getCurrentUser().name }}</h1>
   </div>
-  <div class="col-md-3">
-    <h4>Vorname:</h4>
-    <label ng-model="student.vName"></label>
+  <div class="panel panel-default col-md-3">
+    <h4 class="panel-heading">Vorname:</h4>
+    <label class="panel-body" ng-model="student.vName">{{studentenInfos.name}}</label>
   </div>
-  <div class="col-md-3">
-    <h4>Nachname:</h4>
-    <label ng-model="student.nName"></label>
+  <div class="panel panel-default col-md-3">
+    <h4 class="panel-heading">Nachname:</h4>
+    <label class="panel-body" ng-model="student.nName">{{studentenInfos.nName}}</label>
   </div>
-  <div class="col-md-3">
-    <h4>Geburtstag:</h4>
-    <label ng-model="student.gebDatum"></label>
+  <div class="panel panel-default col-md-3">
+    <h4 class="panel-heading">Geburtstag:</h4>
+    <label class="panel-body" ng-model="student.gebDatum">{{studentenInfos.gebDatum}}</label>
   </div>
-  <div class="col-md-3">
-    <h4>Email:</h4>
-    <label ng-model="student.eMail"></label>
+  <div class="panel panel-default col-md-3">
+    <h4 class="panel-heading">Email:</h4>
+    <label class="panel-body" ng-model="student.eMail">{{studentenInfos.email}}</label>
   </div>
-  <div class="col-md-6">
-    <h3>Vorlesungen:</h3>
-    <label ng-model="student.Vorlesungn"></label>
+  <div class="panel panel-default col-md-6">
+    <h3 class="panel-header">Vorlesungen:</h3>
+    <select class="form-control" id="sel1" size="4" ng-model="jahrSelect">
+      <option ng-repeat="t in jahrgang" ng-click="changeShowInfo()">{{t}}</option>
+    </select>
+    <label ng-model="student.Vorlesungn">{{studentenInfos.Vorlesungn}}</label>
   </div>
   <div class="col-md-6">
     <h3>Testate:</h3>

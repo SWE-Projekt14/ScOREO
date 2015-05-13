@@ -1,0 +1,48 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="col-md-12">
+    <div class="page-header">
+      <h1 class="col-md-4">Testat Bewerten</h1>
+      <select class="form-control  col-md-8" id="sel1" ng-model="isH2.value">
+        <option value="H2">H2</option>
+        <option value="Score">Score</option>
+      </select>
+    </div>
+  </div>
+  <form class="thing-form col-md-12">
+    <div class="col-md-3">
+      <h4>Student auswählen:</h4>
+      <select class="form-control  col-md-8" id="sel1" ng-model="isH2.value" size="8">
+        <option value="H2">H2</option>
+        <option value="Score">Score</option>
+      </select>
+    </div>
+    <div class="col-md-9 input-group">
+
+      <form class="">
+        <!-- ng-repeat-->
+        <label class="form-control col-md-1" ng-model="bewertung.kriterium">KriteriumX</label>
+        <!-- If Score Show -->
+        <input type="text" ng-model="bewertung.scoreX" class="form-control col-md-1" placeholder="Score">
+        <!-- If H2 Show -->
+        <select class="form-control col-md-2" id="sel2">
+          <option>1</option>
+          <option>2</option>
+        </select>
+        <label class="form-control col-md-2" ng-model="bewertung.ImpactX">Impact</label>
+      </form>
+      <h3></h3>
+      <p class="input-group">
+        <button type="submit" class="btn btn-primary" ng-click="addTestat()">Speichern</button>
+        </span>
+      </p>
+    </div>
+    <h3></h3>
+    <p class="input-group">
+      <button type="submit" class="btn btn-primary" ng-click="addTestat()">Speichern</button>
+      </span>
+    </p>
+
+  </form>
+</div>

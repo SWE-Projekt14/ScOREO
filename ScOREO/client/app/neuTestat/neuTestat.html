@@ -5,12 +5,12 @@
     <h1 class="page-header">Neues Testat hinzufügen</h1>
   </div>
   <form class="thing-form col-md-12">
-    <h3 class="col-md-12">Vorlesung:</h3>
+    <h4 class="col-md-12">Vorlesung:</h4>
     <select class="form-control" id="sel1" ng-model="isH2.value">
-                <option value="H2">H2</option>
-                <option value="Score">Score</option>
-              </select>
-    <h3 class="col-md-12">Titel:</h3>
+      <option value="H2">H2</option>
+      <option value="Score">Score</option>
+    </select>
+    <h4 class="col-md-12">Titel:</h4>
     <input type="text" class="form-control" placeholder="Testattitel" ng-model="testat.testat">
     <h3></h3>
     <form class="">
@@ -48,7 +48,7 @@
     </form>
     <div class="form-group">
       <div class="col-md-3">
-        <label for="sel1">Jahrgang:</label>
+        <h4 for="sel1">Jahrgang:</h4>
         <select class="form-control" id="sel1" size="4">
           <option>1</option>
           <option>2</option>
@@ -58,7 +58,7 @@
       </div>
       <div class="col-md-1"></div>
       <div class="col-md-3">
-        <label for="sel2">Kurs:</label>
+        <h4 for="sel2">Kurs:</h4>
         <select class="form-control" id="sel2" size="4">
           <option>1</option>
           <option>2</option>
@@ -69,6 +69,7 @@
     </div>
   </form>
   <div class="col-md-12">
+    <h3></h3>
     <p class="input-group">
       <button type="submit" class="btn btn-primary" ng-click="addTestat()">Add New</button>
       </span>

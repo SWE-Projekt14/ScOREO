@@ -1,0 +1,33 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container" ng-init="getKursInfo()">
+  <div class="col-md-12">
+    <h1 class="page-header">Neue Vorlesung hinzufügen</h1>
+  </div>
+  <form class="thing-form col-md-12">
+    <h4 class="col-md-12">Titel:</h4>
+    <input type="text" class="form-control" placeholder="Vorlesungsname" ng-model="vorlesung.name">
+    <div class="form-group">
+      <div class="col-md-3">
+        <h4 for="sel1">Jahrgang:</h4>
+        <select class="form-control" id="sel1" size="4" ng-model="jahrSelect">
+          <option ng-repeat="t in jahrgang" ng-click="changeShowInfo()">{{t}}</option>
+        </select>
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+        <h4 for="sel2">Kurs:</h4>
+        <select class="form-control" id="sel2" size="4" ng-model="vorlesung.kurs" ng-hide="showKurs">
+          <option ng-repeat="v in kurses">{{v.name}}</option>
+        </select>
+      </div>
+    </div>
+  </form>
+  <div class="col-md-12">
+    <h4></h4>
+    <p class="input-group">
+      <button type="submit" class="btn btn-primary" ng-click="sendVorlesung()">Add New</button>
+      </span>
+    </p>
+  </div>
+</div>

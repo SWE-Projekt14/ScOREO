@@ -9,6 +9,9 @@ angular.module('softwareEngineeringApp')
       'title': 'Dozent',
       'link': '/dozent'
     },{
+      'title': 'Bewerten',
+      'link': '/Bewerten'
+    },{
       'title': 'Neues Testat',
       'link': '/neuesTestat'
     },{
@@ -17,6 +20,9 @@ angular.module('softwareEngineeringApp')
     },{
       'title': 'Kurs hinzufügen',
       'link': '/Kurs'
+    },{
+      'title': 'Vorlesung hinzufügen',
+      'link': '/Vorlesung'
     }];
 
     $scope.isCollapsed = true;

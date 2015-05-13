@@ -3,15 +3,16 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Kurs anlegen:</h1>
+      <h1 class="page-header">Kurs anlegen</h1>
     </div>
   </div>
   <form class="thing-form">
     <div class="col-md-12">
-      <input type="text" ng-model="kurs.bezeichnung" class="form-control" placeholder="Kursbezeichnung">
+      <input type="text" ng-model="name" class="form-control" placeholder="Kursbezeichnung">
+      <input type="number" ng-model="jahrgang" class="form-control" placeholder="Jahrgang">
       <h3></h3>
       <div>
-        <button ng-click="addStudent()" class="btn btn-primary">Kurs anlegen</button>
+        <button ng-click="createKurs()" class="btn btn-primary">Kurs anlegen</button>
       </div>
     </div>
   </form>
