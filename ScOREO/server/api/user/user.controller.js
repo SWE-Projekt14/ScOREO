@@ -20,8 +20,16 @@ exports.index = function (req, res) {
   });
 };
 
+exports.getDozenten = function (req, res) {
+  User.find({}, '-salt -hashedPassword', function (err, users) {
+    if (err) return res.send(500, err);
+    res.json(200, users);
+  });
+};
+
 exports.AddVorlesung = function (req, res, next) {
   var vorlesung = req.body;
+  console.log(req.body);
   User.find({stKurs: 'TINF13IN'}, function (err, users) {
     if (err) return res.send(500, err);
     console.log(users);

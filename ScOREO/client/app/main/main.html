@@ -3,31 +3,34 @@
   <div class="col-md-12">
     <h1 class="page-header">Hallo {{ getCurrentUser().name }}</h1>
   </div>
-  <div class="panel panel-default col-md-3">
+  <div class="panel panel-primary col-md-3">
     <h4 class="panel-heading">Vorname:</h4>
     <label class="panel-body" ng-model="student.vName">{{studentenInfos.name}}</label>
   </div>
-  <div class="panel panel-default col-md-3">
+  <div class="panel panel-primary col-md-3">
     <h4 class="panel-heading">Nachname:</h4>
     <label class="panel-body" ng-model="student.nName">{{studentenInfos.nName}}</label>
   </div>
-  <div class="panel panel-default col-md-3">
+  <div class="panel panel-primary col-md-3">
     <h4 class="panel-heading">Geburtstag:</h4>
     <label class="panel-body" ng-model="student.gebDatum">{{studentenInfos.gebDatum}}</label>
   </div>
-  <div class="panel panel-default col-md-3">
+  <div class="panel panel-primary col-md-3">
     <h4 class="panel-heading">Email:</h4>
     <label class="panel-body" ng-model="student.eMail">{{studentenInfos.email}}</label>
   </div>
   <div class="panel panel-default col-md-6">
     <h3 class="panel-header">Vorlesungen:</h3>
     <select class="form-control" id="sel1" size="4" ng-model="jahrSelect">
-      <option ng-repeat="t in jahrgang" ng-click="changeShowInfo()">{{t}}</option>
+      <option ng-repeat="t in studentenInfos.vorlesung" ng-click="changeShowInfo()">{{t}}</option>
     </select>
     <label ng-model="student.Vorlesungn">{{studentenInfos.Vorlesungn}}</label>
   </div>
-  <div class="col-md-6">
-    <h3>Testate:</h3>
-    <label ng-model="student.Testate"></label>
+  <div class="panel panel-default col-md-6">
+    <h3 class="panel-header">Testate:</h3>
+    <select class="form-control" id="sel1" size="4" ng-model="jahrSelect">
+      <option ng-repeat="t in studentenInfos.vorlesung" ng-click="changeShowInfo()">{{t}}</option>
+    </select>
+    <label ng-model="student.Vorlesungn">{{studentenInfos.Vorlesungn}}</label>
   </div>
 </div>
