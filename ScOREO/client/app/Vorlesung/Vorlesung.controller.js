@@ -19,7 +19,6 @@ angular.module('softwareEngineeringApp')
           });
         });
       });
-      
     };
 
     $scope.changeShowInfo = function () {

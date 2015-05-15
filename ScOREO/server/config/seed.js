@@ -48,21 +48,26 @@ User.find({}).remove(function () {
     name: 'Hans',
     nName: 'Dozent',
     gebDatum: '12.13.14',
-    vorlesung: [
-      {
-        'Bezeichnung': 'Theoretische Informatik',
-        'Testate': [
-          'lalelu', 'blalu'
-      ]},
-      {
-        'Bezeichnung': 'Statistik',
-        'Testate': [
-          'drevier', 'einszwei'
-        ]
-      }
-    ],
+    vorlesung: [{
+      'Bezeichnung': 'Theoretische Informatik',
+      'Testate': ['lalelu', 'blalu']
+      }, {
+      'Bezeichnung': 'Statistik',
+      'Testate': ['drevier', 'einszwei']
+      }],
     stGeschl: 'm',
     email: 'hans@dozent.com',
+    password: 'test'
+  }, {
+    provider: 'local',
+    role: 'student',
+    name: 'Test',
+    nName: 'Student',
+    gebDatum: '12.13.14',
+    vorlesung: [],
+    stGeschl: 'm',
+    stKurs: 'TINF13IN',
+    email: 'test@student.com',
     password: 'test'
   }, function () {
     console.log('finished populating users');

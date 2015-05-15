@@ -1,14 +1,13 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="container">
+<div class="container" ng-init="getVorlesungen()">
   <div class="col-md-12">
     <h1 class="page-header">Neues Testat hinzufügen</h1>
   </div>
   <form class="thing-form col-md-12">
     <h4 class="col-md-12">Vorlesung:</h4>
     <select class="form-control" id="sel1" ng-model="isH2.value">
-      <option value="H2">H2</option>
-      <option value="Score">Score</option>
+      <option ng-repeat="t in vorlesungenList">{{t.Bezeichnung}}</option>
     </select>
     <h4 class="col-md-12">Titel:</h4>
     <input type="text" class="form-control" placeholder="Testattitel" ng-model="testat.testat">
@@ -25,7 +24,7 @@
         <div class="col-sm-2" class="">
           <div class="" data-ng-repeat="isH2 in isH2s">
             <p class="input-group">
-              <select class="form-control" id="sel1" ng-model="isH2.value">
+              <select class="form-control" id="sel1" ng-model="isH2.value" ng-change="changeH2(isH2true)">
                 <option value="H2">H2</option>
                 <option value="Score">Score</option>
               </select>
@@ -34,7 +33,6 @@
         </div>
         <div class="col-sm-6" class="">
           <div class="" data-ng-repeat="impact in impacts">
-            <!--  <label for="impact" ng-show="showImpactLabel(impact)">Impact2</label> -->
             <p class="input-group">
               <input type="text" ng-model="impact.value" class="form-control" placeholder="Impact">
               <span class="input-group-btn">
@@ -48,22 +46,9 @@
     </form>
     <div class="form-group">
       <div class="col-md-3">
-        <h4 for="sel1">Jahrgang:</h4>
-        <select class="form-control" id="sel1" size="4">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-        </select>
-      </div>
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
         <h4 for="sel2">Kurs:</h4>
         <select class="form-control" id="sel2" size="4">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
+          <option ng-repeat="t in kurses">{{t.name}}</option>
         </select>
       </div>
     </div>

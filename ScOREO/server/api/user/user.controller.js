@@ -1,8 +1,8 @@
 'use strict';
 
 var User = require('./user.model');
-var Vorlesung
 var passport = require('passport');
+var mongoose = require('mongoose');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 
@@ -33,6 +33,24 @@ exports.getDozenten = function (req, res) {
 };
 
 exports.AddVorlesung = function (req, res, next) {
+  User.find({
+      stKurs: req.body.kurs
+    },
+    function (err, users) {
+      console.log(users);
+      var test = new User(users);
+    console.log(test);
+      test.save(users ,function (err, test) {
+        console.log(err);
+        if (err) {
+          console.log(test);
+          return console.error(err);
+        }
+      });
+    });
+};
+
+exports.AddTestat = function (req, res, next) {
   User.find({
     stKurs: req.body.kurs
   }, function (err, users) {
