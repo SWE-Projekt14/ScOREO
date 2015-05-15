@@ -1,6 +1,7 @@
 'use strict';
 
 var User = require('./user.model');
+var Vorlesung
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -21,18 +22,21 @@ exports.index = function (req, res) {
 };
 
 exports.getDozenten = function (req, res) {
-  User.find({}, '-salt -hashedPassword', function (err, users) {
+  User.find({
+    role: 'dozent'
+  }, function (err, users) {
     if (err) return res.send(500, err);
-    res.json(200, users);
+    else {
+      res.json(200, users);
+    }
   });
 };
 
 exports.AddVorlesung = function (req, res, next) {
-  var vorlesung = req.body;
-  console.log(req.body);
-  User.find({stKurs: 'TINF13IN'}, function (err, users) {
+  User.find({
+    stKurs: req.body.kurs
+  }, function (err, users) {
     if (err) return res.send(500, err);
-    console.log(users);
   });
 };
 

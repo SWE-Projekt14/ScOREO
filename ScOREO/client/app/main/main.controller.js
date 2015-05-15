@@ -13,6 +13,7 @@ angular.module('softwareEngineeringApp')
 
   $scope.getUserInfos = function () {
     $http.get('/api/users/me').success(function(userInfos){
+      console.log(userInfos);
       $scope.studentenInfos = userInfos;
     });
   };
