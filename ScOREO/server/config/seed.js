@@ -49,6 +49,20 @@ User.find({}).remove(function () {
     nName: 'Dozent',
     gebDatum: '12.13.14',
     stGeschl: 'm',
+    vorlesung: {},/*{
+      Mathe: {
+        Testate: [
+
+      ],
+        Bezeichnung: "Mathe"
+      },
+      Rechnerarchitektur: {
+        Testate: [
+
+      ],
+        Bezeichnung: "Rechnerarchitektur"
+      }
+    },*/
     email: 'hans@dozent.com',
     password: 'test'
   }, {
@@ -57,7 +71,7 @@ User.find({}).remove(function () {
     name: 'Test',
     nName: 'Student',
     gebDatum: '12.13.14',
-    vorlesung: [],
+    vorlesung: {},
     stGeschl: 'm',
     stKurs: 'TINF13IN',
     email: 'test@student.com',

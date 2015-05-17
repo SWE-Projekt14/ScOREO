@@ -8,9 +8,6 @@ angular.module('softwareEngineeringApp')
     $scope.showKurs = true;
 
     $scope.getKursInfo = function () {
-      console.log("Nginit");
-      $http.post('/api/users/initVorlesung').success(function (infos) {
-    })
       $http.get('/api/kurs').success(function (kurs) {
         kurs.forEach(function (obj) {
           if ($.inArray(obj.jahrgang, $scope.jahrgang)) {

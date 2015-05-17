@@ -33,55 +33,26 @@ exports.getDozenten = function (req, res) {
   });
 };
 
-exports.InitVorlesung = function (req, res, next) {
-  console.log("InitVorlesung");
-  User.update({
-    _id: req.body._id
-  }, {
-    vorlesung: {restsdf:{}}
-  }, function (err, raw) {
-    if (err) return handleError(err);
-  });
-};
-
 exports.AddVorlesung = function (req, res, next) {
-  console.log(req.body);
+  var pfad = 'vorlesung.' + req.body.name;
+  var update = {};
+  update[pfad] = {
+    'Bezeichnung': req.body.name,
+    'Testate': []
+  };
+
+  console.log(update);
   User.update({
     _id: req.body._id
   }, {
-    vorlesung: {
-      req: {
-        Testate: {
-          blupp: {
-            Score: 4
-          },
-          blaa: {
-            Score: 2
-          }
-        },
-        Dozent: "test"
-      },
-      Mathe: {
-        Testate: {
-          bludgfhpp: {
-            Score: 4
-          },
-          blfgaa: {
-            Score: 2
-          }
-        },
-        Dozent: "tessdft"
-      }
-    }
+    $set: update
   }, function (err, raw) {
     if (err) return handleError(err);
   });
   User.update({
     stKurs: req.body.kurs
   }, {
-    $pushAll: {
-      vorlesung: [req.body.name]
-    }
+    $addToSet: update
   }, {
     multi: true
   }, function (err, raw) {
@@ -90,18 +61,33 @@ exports.AddVorlesung = function (req, res, next) {
 };
 
 exports.AddTestat = function (req, res, next) {
-  var lokUserTestat;
-  User.findById(req.body._id, function (err, user) {
-    console.log(user);
-    lokUserTestat = user.vorlesung;
-  });
-  console.log(lokUserTestat);
+  var pfad = 'vorlesung.' + req.body.vorlesung + '.Testate';
+  var update = {};
+  update[pfad] = {
+    'Titel': req.body.titel,
+    'Kriterien': req.body.testate
+  };
 
-  User.find({
-    stKurs: req.body.kurs
-  }, function (err, users) {
-    if (err) return res.send(500, err);
+  User.update({
+    _id: req.body._id
+  }, {
+    '$addToSet': update
+  }, {
+    multi: true
+  }, function (err, raw) {
+    if (err) return handleError(500, err);
   });
+console.log(req.body);
+  User.update({
+      stKurs: req.body.kurs
+    }, {
+      '$addToSet': update
+    }, {
+      multi: true
+    },
+    function (err, users) {
+      if (err) return res.send(500, err);
+    });
 };
 
 /**

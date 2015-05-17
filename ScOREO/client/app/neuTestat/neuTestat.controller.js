@@ -5,7 +5,7 @@ angular.module('softwareEngineeringApp')
     $scope.awesomeThings = [];
     $scope.message = 'Hello';
     $scope.userInfo = {};
-    $scope.vorlesungenList = [];
+    $scope.vorlesungenList;
     $scope.kurses = [];
     $scope.showH2 = false;
 
@@ -114,6 +114,7 @@ angular.module('softwareEngineeringApp')
       $http.get('/api/users/me').success(function (userInfos) {
         $scope.userInfo = userInfos;
         $scope.vorlesungenList = userInfos.vorlesung;
+        console.log($scope.vorlesungenList);
       });
 
       $http.get('/api/kurs').success(function (kurs) {

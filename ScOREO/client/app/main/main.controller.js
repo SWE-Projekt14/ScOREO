@@ -10,19 +10,24 @@ angular.module('softwareEngineeringApp')
       email: String,
       Vorlesungen: []
     };
+    $scope.aktVorlesung = [];
 
-  $scope.getUserInfos = function () {
-    $http.get('/api/users/me').success(function(userInfos){
-      console.log(userInfos);
-      $scope.studentenInfos = userInfos;
-    });
-  };
+    $scope.getUserInfos = function () {
+      $http.get('/api/users/me').success(function (userInfos) {
+        console.log(userInfos);
+        $scope.studentenInfos = userInfos;
+      });
+    };
     $scope.getCurrentUser = Auth.getCurrentUser;
 
     $http.get('/api/things').success(function (awesomeThings) {
       $scope.awesomeThings = awesomeThings;
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
+
+    $scope.changeShowInfo = function (selVorl) {
+
+    };
 
     $scope.addThing = function () {
       if ($scope.newThing === '') {
