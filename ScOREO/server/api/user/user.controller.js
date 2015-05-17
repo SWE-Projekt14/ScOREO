@@ -38,6 +38,7 @@ exports.AddVorlesung = function (req, res, next) {
   var update = {};
   update[pfad] = {
     'Bezeichnung': req.body.name,
+    'Kurs': req.body.kurs,
     'Testate': []
   };
 
@@ -52,7 +53,7 @@ exports.AddVorlesung = function (req, res, next) {
   User.update({
     stKurs: req.body.kurs
   }, {
-    $addToSet: update
+    $set: update
   }, {
     multi: true
   }, function (err, raw) {
@@ -77,7 +78,7 @@ exports.AddTestat = function (req, res, next) {
   }, function (err, raw) {
     if (err) return handleError(500, err);
   });
-console.log(req.body);
+
   User.update({
       stKurs: req.body.kurs
     }, {
@@ -88,6 +89,17 @@ console.log(req.body);
     function (err, users) {
       if (err) return res.send(500, err);
     });
+};
+
+exports.getTestatUser = function (req, res, next) {
+  User.find({
+    stKurs: req.params.kurs
+  }, function (err, users) {
+    if (err) return res.send(500, err);
+    else {
+      res.json(200, users);
+    }
+  });
 };
 
 /**

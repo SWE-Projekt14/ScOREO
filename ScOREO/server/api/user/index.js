@@ -13,6 +13,7 @@ router.get('/me', auth.isAuthenticated(), controller.me);
 router.post('/addVorlesung', controller.AddVorlesung);
 router.post('/addTestat', controller.AddTestat);
 router.get('/dozenten', controller.getDozenten);
+router.get('/studTestatInfo', controller.getTestatUser);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
