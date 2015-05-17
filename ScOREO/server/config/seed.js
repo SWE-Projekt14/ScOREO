@@ -48,13 +48,6 @@ User.find({}).remove(function () {
     name: 'Hans',
     nName: 'Dozent',
     gebDatum: '12.13.14',
-    vorlesung: [{
-      'Bezeichnung': 'Theoretische Informatik',
-      'Testate': ['lalelu', 'blalu']
-      }, {
-      'Bezeichnung': 'Statistik',
-      'Testate': ['drevier', 'einszwei']
-      }],
     stGeschl: 'm',
     email: 'hans@dozent.com',
     password: 'test'

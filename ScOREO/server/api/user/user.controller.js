@@ -3,6 +3,7 @@
 var User = require('./user.model');
 var passport = require('passport');
 var mongoose = require('mongoose');
+var test = require('./user.controller.js')
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 
@@ -32,25 +33,70 @@ exports.getDozenten = function (req, res) {
   });
 };
 
+exports.InitVorlesung = function (req, res, next) {
+  console.log("InitVorlesung");
+  User.update({
+    _id: req.body._id
+  }, {
+    vorlesung: {restsdf:{}}
+  }, function (err, raw) {
+    if (err) return handleError(err);
+  });
+};
+
 exports.AddVorlesung = function (req, res, next) {
-  User.find({
-      stKurs: req.body.kurs
-    },
-    function (err, users) {
-      console.log(users);
-      var test = new User(users);
-    console.log(test);
-      test.save(users ,function (err, test) {
-        console.log(err);
-        if (err) {
-          console.log(test);
-          return console.error(err);
-        }
-      });
-    });
+  console.log(req.body);
+  User.update({
+    _id: req.body._id
+  }, {
+    vorlesung: {
+      req: {
+        Testate: {
+          blupp: {
+            Score: 4
+          },
+          blaa: {
+            Score: 2
+          }
+        },
+        Dozent: "test"
+      },
+      Mathe: {
+        Testate: {
+          bludgfhpp: {
+            Score: 4
+          },
+          blfgaa: {
+            Score: 2
+          }
+        },
+        Dozent: "tessdft"
+      }
+    }
+  }, function (err, raw) {
+    if (err) return handleError(err);
+  });
+  User.update({
+    stKurs: req.body.kurs
+  }, {
+    $pushAll: {
+      vorlesung: [req.body.name]
+    }
+  }, {
+    multi: true
+  }, function (err, raw) {
+    if (err) return handleError(err);
+  });
 };
 
 exports.AddTestat = function (req, res, next) {
+  var lokUserTestat;
+  User.findById(req.body._id, function (err, user) {
+    console.log(user);
+    lokUserTestat = user.vorlesung;
+  });
+  console.log(lokUserTestat);
+
   User.find({
     stKurs: req.body.kurs
   }, function (err, users) {

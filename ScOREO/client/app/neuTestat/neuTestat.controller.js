@@ -4,6 +4,7 @@ angular.module('softwareEngineeringApp')
   .controller('NeuTestatCtrl', function ($scope, $http, socket) {
     $scope.awesomeThings = [];
     $scope.message = 'Hello';
+    $scope.userInfo = {};
     $scope.vorlesungenList = [];
     $scope.kurses = [];
     $scope.showH2 = false;
@@ -53,9 +54,6 @@ angular.module('softwareEngineeringApp')
     $scope.showAddImpact = function (impact) {
       return impact.id === $scope.impacts[$scope.impacts.length - 1].id;
     };
-
-
-
     $scope.showDeleteImpact = function (impact) {
       if ($scope.impacts.length > 1) {
         return impact.id === $scope.impacts[$scope.impacts.length - 1].id;
@@ -76,17 +74,6 @@ angular.module('softwareEngineeringApp')
     };
 
     // --------------------------------------------    
-
-    $scope.addThing = function () {
-      if ($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', {
-        name: $scope.newThing
-      });
-      $scope.newThing = '';
-    };
-
     $scope.changeH2 = function (wert) {
       $scope.showH2 = wert;
     };
@@ -107,18 +94,25 @@ angular.module('softwareEngineeringApp')
           isH2ss = false;
         }
         sendTestat.push({
-          'Impact': $scope.impacts[key],
-          'Kriterium': $scope.kriteriums[key],
+          'Impact': $scope.impacts[key].value,
+          'Kriterium': $scope.kriteriums[key].value,
           'isH2': isH2ss
         });
       });
-      
-      $http.post
+
+      $http.post('/api/users/addTestat', {
+        _id: $scope.userInfo._id,
+        vorlesung: $scope.testat.vorlesung,
+        titel: $scope.testat.testat,
+        kurs: $scope.testat.kurs,
+        testate: sendTestat
+      }).success(function (data) {});
       $scope.newTestat = '';
     };
 
     $scope.getVorlesungen = function () {
       $http.get('/api/users/me').success(function (userInfos) {
+        $scope.userInfo = userInfos;
         $scope.vorlesungenList = userInfos.vorlesung;
       });
 

@@ -92,13 +92,14 @@ var validatePresenceOf = function(value) {
   return value && value.length;
 };
 
+
+
 /**
  * Pre-save hook
  */
 UserSchema
   .pre('save', function(next) {
     if (!this.isNew) return next();
-
     if (!validatePresenceOf(this.hashedPassword))
       next(new Error('Invalid password'));
     else

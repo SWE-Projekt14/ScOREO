@@ -24,12 +24,11 @@
       <div class="col-md-1"></div>
       <div class="col-md-3">
         <h4 for="sel2">Kurs:</h4>
-        <select class="form-control" id="sel2" size="4" ng-model="vorlesung.kurs" ng-hide="showKurs">
+        <select class="form-control" id="sel2" size="4" ng-model="vorlesung.kurs">
           <option ng-repeat="v in kurses">{{v.name}}</option>
         </select>
       </div>
-    </div>
-  </form>
+    
   <div class="col-md-12">
     <h4></h4>
     <p class="input-group">
@@ -37,4 +36,6 @@
       </span>
     </p>
   </div>
+</div>
+  </form>
 </div>

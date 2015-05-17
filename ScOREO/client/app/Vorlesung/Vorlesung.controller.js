@@ -8,6 +8,9 @@ angular.module('softwareEngineeringApp')
     $scope.showKurs = true;
 
     $scope.getKursInfo = function () {
+      console.log("Nginit");
+      $http.post('/api/users/initVorlesung').success(function (infos) {
+    })
       $http.get('/api/kurs').success(function (kurs) {
         kurs.forEach(function (obj) {
           if ($.inArray(obj.jahrgang, $scope.jahrgang)) {
@@ -26,10 +29,14 @@ angular.module('softwareEngineeringApp')
     };
 
     $scope.sendVorlesung = function () {
-      $http.post('/api/users/addVorlesung', {
-        name: $scope.vorlesung.name,
-        kurs: $scope.vorlesung.kurs,
-      }).success(function (data) {});
+      var uebergabe = $scope.vorlesung.name;
+      $http.get('/api/users/me').success(function (infos) {
+        $http.post('/api/users/addVorlesung', {
+          name: uebergabe,
+          kurs: $scope.vorlesung.kurs,
+          _id: infos._id
+        }).success(function (data) {});
+      });
       $scope.vorlesung.name = '';
     };
   });
