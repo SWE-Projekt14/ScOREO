@@ -15,6 +15,7 @@ router.post('/addTestat', controller.AddTestat);
 router.post('/bewerteKurs', controller.bewKurs);
 router.get('/testatUser', controller.getTestatUser);
 router.get('/dozenten', controller.getDozenten);
+router.post('/berechne', controller.calcS2R);
 router.get('/studTestatInfo', controller.getTestatUser);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);

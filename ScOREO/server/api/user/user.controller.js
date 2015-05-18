@@ -62,7 +62,7 @@ exports.AddVorlesung = function (req, res, next) {
 };
 
 exports.bewKurs = function (req, res, next) {
-  
+
 };
 
 exports.AddTestat = function (req, res, next) {
@@ -71,6 +71,7 @@ exports.AddTestat = function (req, res, next) {
   update[pfad] = {
     'Titel': req.body.titel,
     'Kriterien': req.body.testate,
+    'Score': '',
     'Gesamtwertung': ''
   };
 
@@ -98,7 +99,7 @@ exports.AddTestat = function (req, res, next) {
 
 exports.getTestatUser = function (req, res, next) {
   User.find({
-    'role' : 'student'
+    'role': 'student'
   }, function (err, users) {
     if (err) return res.send(500, err);
     else {
@@ -194,34 +195,62 @@ exports.authCallback = function (req, res, next) {
 };
 
 exports.calcS2R = function (req, res, next) {
-  
+  var path = '';
+  var update = {};
+
   User.find({
     stKurs: req.params.kurs
   }, function (err, users) {
     if (err) return res.send(500, err);
     else {
-     
+      angular.forEach(users, function (value, key) {
+        console.log(users);
+        angular.forEach(value.vorlesung[req.body.vorl].Testate, function (vvalue, kkey) {
+          path = 'vorlesung.' + req.body.vorl + '.Testate';
+          if (vvalue.Titel == req.body.testat) {
+            angular.forEach(vvalue.Kriterien, function (vvvalue, kkkey) {
+              path = path + '.' + vvalue.Kriterien;
+              var refInvOp1, refInvOp2, refInvWert = 0;
+              aktImpact = vvvalue.Impact;
+              aktScore = vvvalue.Score;
+              if (vvvalue.isH2) {
+                aktBenchmark = 0.8;
+              } else {
+                aktBenchmark = 0.2;
+              }
+            });
+
+            if (aktImpact === 0 || aktBenchmark === 0 || aktBenchmark === 1) {
+              refInvWert = 1;
+            }
+            if (aktImpact !== 0 && aktBenchmark !== 0 && aktBenchmark !== 1 && aktScore < (aktBenchmark / (1 - aktImpact * (1 - aktBenchmark)))) {
+              refInvOp1 = Math.log(1 - (aktScore / aktBenchmark) * (1 - aktImpact * (1 - aktBenchmark)));
+              refInvOp2 = Math.log(aktImpact * (1 - aktBenchmark));
+              refInvWert = refInvOp1 / refInvOp2;
+            }
+
+            if (aktImpact !== 0 && aktBenchmark !== 0 && aktBenchmark !== 1 && aktScore >= (aktBenchmark / (1 - aktImpact * (1 - aktBenchmark)))) {
+              // Errorhandling!
+            }
+
+            update[path] = {
+              'Score': aktScore,
+              'Benchmark': aktBenchmark,
+              'Impact': aktImpact,
+              'Rate': refInvWert
+            };
+
+            User.update({
+              _id: value._id
+            }, {
+              $: update
+            }, function (err, raw) {
+              if (err) return handleError(err);
+            });
+
+          }
+        });
+      });
     }
   });
-  
-  
-    var refInvOp1, refInvOp2, refInvWert = 0;
-    var impact =0.5; // hier Impact rausholen
-    var benchmark = 0.8; // 
-    var score = 0.8;
-    if (impact === 0 || benchmark === 0 || benchmark === 1) {
-        refInvWert = 1;
-    }
-    if (impact !== 0 && benchmark !== 0 && benchmark !== 1 && score < (benchmark / (1 - impact * (1 - benchmark)))) {
-        refInvOp1 = Math.log(1 - (score / benchmark) * (1 - impact * (1 - benchmark)));
-        refInvOp2 = Math.log(impact * (1 - benchmark));
-        refInvWert = refInvOp1 / refInvOp2;
-    }
-
-    if (impact !== 0 && benchmark !== 0 && benchmark !== 1 && score >= (benchmark / (1 - impact * (1 - benchmark)))) {
-        // Errorhandling!
-
-    }
-
- return refInvWert;
 };

@@ -9,8 +9,8 @@
         <option ng-repeat="t in studentenInfos.vorlesung" >{{t.Bezeichnung}}</option>
       </select>
       <h3>Testat auswählen:</h3>
-      <select class="form-control  col-md-8" id="sel1" ng-model="testattitel" ng-click="changeValue(testattitel)">
-        <option ng-repeat="t in studentenInfos.vorlesung" >{{t.Bezeichnung}}</option>
+      <select class="form-control  col-md-8" id="sel1" ng-model="testattiteltt">
+        <option ng-repeat="t in testatList" >{{t.Titel}}</option>
       </select>
     </div>
   </div>
