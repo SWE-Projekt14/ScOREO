@@ -6,26 +6,31 @@ angular.module('softwareEngineeringApp')
     $scope.studentenInfos = {};
     $scope.studSaveList = [];
     $scope.studenteList = [];
+    $scope.testatList = [];
     var update = {};
-    var testatpf = {};
-    var path = '';
 
     $scope.changeValue = function (wert) {
-      path = 'vorlesung.' + wert;
-      console.log(wert);
       $scope.studenteList = [];
       angular.forEach($scope.studSaveList, function (value, key) {
         if (value.vorlesung[wert]) {
-          console.log(value[path]);
           update = {
             'vName': value.name,
             'nName': value.nName,
-            'Testate': testatpf
+            'Testate': value.vorlesung[wert].Testate
           };
+          $scope.testatList = value.vorlesung[wert].Testate;
           $scope.studenteList.push(update);
-
+          console.log($scope.testatList);
         }
       });
+    };
+
+    $scope.saveCalc = function () {
+      $http.post('/api/users/berechne', {
+        stKurs: $scope.studentenInfos.stKurs,
+        vorl: $scope.testattitel,
+        testat: $scope.testattiteltt
+      }).success(function (data) {});
     };
 
     $scope.getUserInfos = function () {
