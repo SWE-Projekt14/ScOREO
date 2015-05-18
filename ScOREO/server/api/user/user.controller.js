@@ -61,12 +61,17 @@ exports.AddVorlesung = function (req, res, next) {
   });
 };
 
+exports.bewKurs = function (req, res, next) {
+  
+};
+
 exports.AddTestat = function (req, res, next) {
   var pfad = 'vorlesung.' + req.body.vorlesung + '.Testate';
   var update = {};
   update[pfad] = {
     'Titel': req.body.titel,
-    'Kriterien': req.body.testate
+    'Kriterien': req.body.testate,
+    'Gesamtwertung': ''
   };
 
   User.update({
@@ -93,7 +98,7 @@ exports.AddTestat = function (req, res, next) {
 
 exports.getTestatUser = function (req, res, next) {
   User.find({
-    stKurs: req.params.kurs
+    'role' : 'student'
   }, function (err, users) {
     if (err) return res.send(500, err);
     else {
@@ -186,4 +191,37 @@ exports.me = function (req, res, next) {
  */
 exports.authCallback = function (req, res, next) {
   res.redirect('/');
+};
+
+exports.calcS2R = function (req, res, next) {
+  
+  User.find({
+    stKurs: req.params.kurs
+  }, function (err, users) {
+    if (err) return res.send(500, err);
+    else {
+     
+    }
+  });
+  
+  
+    var refInvOp1, refInvOp2, refInvWert = 0;
+    var impact =0.5; // hier Impact rausholen
+    var benchmark = 0.8; // 
+    var score = 0.8;
+    if (impact === 0 || benchmark === 0 || benchmark === 1) {
+        refInvWert = 1;
+    }
+    if (impact !== 0 && benchmark !== 0 && benchmark !== 1 && score < (benchmark / (1 - impact * (1 - benchmark)))) {
+        refInvOp1 = Math.log(1 - (score / benchmark) * (1 - impact * (1 - benchmark)));
+        refInvOp2 = Math.log(impact * (1 - benchmark));
+        refInvWert = refInvOp1 / refInvOp2;
+    }
+
+    if (impact !== 0 && benchmark !== 0 && benchmark !== 1 && score >= (benchmark / (1 - impact * (1 - benchmark)))) {
+        // Errorhandling!
+
+    }
+
+ return refInvWert;
 };

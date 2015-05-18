@@ -2,9 +2,14 @@
 
 <div class="container" ng-init="getUserInfos()">
   <div class="col-md-12">
+    <h1>Testat Bewerten</h1>
     <div class="page-header">
-      <h1 class="col-md-4">Testat Bewerten</h1>
-      <select class="form-control  col-md-8" id="sel1" ng-model="testattitel">
+      <h3>Vorlesung auswählen:</h3>
+      <select class="form-control  col-md-8" id="sel1" ng-model="testattitel" ng-click="changeValue(testattitel)">
+        <option ng-repeat="t in studentenInfos.vorlesung" >{{t.Bezeichnung}}</option>
+      </select>
+      <h3>Testat auswählen:</h3>
+      <select class="form-control  col-md-8" id="sel1" ng-model="testattitel" ng-click="changeValue(testattitel)">
         <option ng-repeat="t in studentenInfos.vorlesung" >{{t.Bezeichnung}}</option>
       </select>
     </div>
@@ -13,7 +18,7 @@
     <div class="col-md-3">
       <h4>Student auswählen:</h4>
       <select class="form-control  col-md-8" id="sel1" ng-model="testat.student" size="8">
-        <option>{{t.nName}}, {{t.vName}}</option>
+        <option ng-repeat="t in studenteList">{{t.nName}}, {{t.vName}}</option>
       </select>
     </div>
     <div class="col-md-9 input-group">
@@ -29,6 +34,7 @@
           <option>2</option>
         </select>
         <label class="form-control col-md-2" ng-model="bewertung.ImpactX">Impact</label>
+        <input type="text" ng-model="bewertung.impact" class="form-control col-md-1" placeholder="Impact">
       </form>
       <h3></h3>
       <p class="input-group">

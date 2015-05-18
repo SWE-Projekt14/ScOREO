@@ -12,6 +12,8 @@ router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
 router.post('/addVorlesung', controller.AddVorlesung);
 router.post('/addTestat', controller.AddTestat);
+router.post('/bewerteKurs', controller.bewKurs);
+router.get('/testatUser', controller.getTestatUser);
 router.get('/dozenten', controller.getDozenten);
 router.get('/studTestatInfo', controller.getTestatUser);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
