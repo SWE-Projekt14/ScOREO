@@ -134,6 +134,13 @@ angular.module('softwareEngineeringApp')
       isAdmin: function() {
         return currentUser.role === 'admin';
       },
+        
+      isDozent: function() {
+          return currentUser.role === 'dozent';
+      },
+      isStudent: function() {
+          return currentUser.role === 'student';
+      },
 
       /**
        * Get auth token

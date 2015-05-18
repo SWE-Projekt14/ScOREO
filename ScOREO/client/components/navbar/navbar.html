@@ -14,7 +14,16 @@
         <li ng-show="isLoggedIn()" ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
             <a ng-href="{{item.link}}">{{item.title}}</a>
         </li>
-        <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
+          
+      <!--    <li ng-show="isDozent()" ng-class="{active: isDozent('/admin')}"><a href="/admin">Admin</a> </li> -->
+          <li ng-show="isStudent()" ng-class="{active: isStudent('/dozent')}"><a href="/dozent">Test</a></li>
+          <li ng-show="isAdmin()" ng-class="{active: isAdmin('/Kurs')}"><a href="Kurs">Kurs anlegen</a></li>          
+          <li ng-show="isAdmin()" ng-class="{active: isAdmin('/verwalter')}"><a href="/verwalter">Benutzer anlegen</a></li>
+          <li ng-show="isAdmin()" ng-class="{active: isAdmin('Vorlesung')}"><a href="Vorlesung">Vorlesung anlegen</a></li>
+          <li ng-show="isDozent()" ng-class="{active: isDozent('neuTestat')}"><a href="neuesTestat">Testat anlegen</a></li>
+          <li ng-show="isDozent()" ng-class="{active: isDozent('Bewerten')}"><a href="Bewerten">Bewerten</a></li>
+      <!--  <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li> -->
+          
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
