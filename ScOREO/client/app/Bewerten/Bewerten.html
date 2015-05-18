@@ -6,11 +6,11 @@
     <div class="page-header">
       <h3>Vorlesung auswählen:</h3>
       <select class="form-control  col-md-8" id="sel1" ng-model="testattitel" ng-click="changeValue(testattitel)">
-        <option ng-repeat="t in studentenInfos.vorlesung" >{{t.Bezeichnung}}</option>
+        <option ng-repeat="t in studentenInfos.vorlesung">{{t.Bezeichnung}}</option>
       </select>
       <h3>Testat auswählen:</h3>
       <select class="form-control  col-md-8" id="sel1" ng-model="testattiteltt">
-        <option ng-repeat="t in testatList" >{{t.Titel}}</option>
+        <option ng-repeat="t in testatList" ng-selected="changeTestat()">{{t.Titel}}</option>
       </select>
     </div>
   </div>
@@ -24,17 +24,20 @@
     <div class="col-md-9 input-group">
 
       <form class="">
-        <!-- ng-repeat-->
-        <label class="form-control col-md-1" ng-model="bewertung.kriterium">KriteriumX</label>
-        <!-- If Score Show -->
-        <input type="text" ng-model="bewertung.scoreX" class="form-control col-md-1" placeholder="Score">
-        <!-- If H2 Show -->
-        <select class="form-control col-md-2" id="sel2">
-          <option>1</option>
-          <option>2</option>
-        </select>
-        <label class="form-control col-md-2" ng-model="bewertung.ImpactX">Impact</label>
-        <input type="text" ng-model="bewertung.impact" class="form-control col-md-1" placeholder="Impact">
+        <div ng-repeat="t in aktTestat.Kriterien">
+          <!-- ng-repeat-->
+          <h3>sdfggfsd{{t.Titel}}</h3>
+          <label class="form-control col-md-1" ng-model="bewertung.kriterium">KriteriumX</label>
+          <!-- If Score Show -->
+          <input type="text" ng-model="bewertung.scoreX" class="form-control col-md-1" placeholder="Score">
+          <!-- If H2 Show -->
+          <select class="form-control col-md-2" id="sel2">
+            <option>1</option>
+            <option>2</option>
+          </select>
+          <label class="form-control col-md-2" ng-model="bewertung.ImpactX">Impact</label>
+          <input type="text" ng-model="bewertung.impact" class="form-control col-md-1" placeholder="Impact">
+        </div>
       </form>
       <h3></h3>
       <p class="input-group">
@@ -44,7 +47,7 @@
     </div>
     <h3></h3>
     <p class="input-group">
-      <button type="submit" class="btn btn-primary" ng-click="addTestat()">Speichern</button>
+      <button type="submit" class="btn btn-primary" ng-click="saveCalc()">Speichern</button>
       </span>
     </p>
 

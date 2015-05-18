@@ -197,18 +197,21 @@ exports.authCallback = function (req, res, next) {
 exports.calcS2R = function (req, res, next) {
   var path = '';
   var update = {};
-
+  console.log(req.body);
   User.find({
-    stKurs: req.params.kurs
+    'stKurs': req.body.kurs
   }, function (err, users) {
-    if (err) return res.send(500, err);
-    else {
-      angular.forEach(users, function (value, key) {
-        console.log(users);
-        angular.forEach(value.vorlesung[req.body.vorl].Testate, function (vvalue, kkey) {
+    if (err) {
+      return res.send(500, err);
+    } else {
+      users.forEach(function (value) {
+        console.log(value);
+        value.vorlesung[req.body.vorl].Testate.forEach(function (vvalue) {
           path = 'vorlesung.' + req.body.vorl + '.Testate';
+          
           if (vvalue.Titel == req.body.testat) {
-            angular.forEach(vvalue.Kriterien, function (vvvalue, kkkey) {
+            console.log("oijkfsdvmpüef");
+            vvalue.Kriterien.forEach(function (vvvalue) {
               path = path + '.' + vvalue.Kriterien;
               var refInvOp1, refInvOp2, refInvWert = 0;
               aktImpact = vvvalue.Impact;
@@ -239,7 +242,7 @@ exports.calcS2R = function (req, res, next) {
               'Impact': aktImpact,
               'Rate': refInvWert
             };
-
+            console.log(update);
             User.update({
               _id: value._id
             }, {
