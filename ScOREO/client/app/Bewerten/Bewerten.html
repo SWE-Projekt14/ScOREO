@@ -9,8 +9,8 @@
         <option ng-repeat="t in studentenInfos.vorlesung">{{t.Bezeichnung}}</option>
       </select>
       <h3>Testat auswählen:</h3>
-      <select class="form-control  col-md-8" id="sel1" ng-model="testattiteltt">
-        <option ng-repeat="t in testatList" ng-selected="changeTestat()">{{t.Titel}}</option>
+      <select class="form-control  col-md-8" id="sel1" ng-model="testattiteltt" ng-change="changeTestat()">
+        <option ng-repeat="t in testatList">{{t.Titel}}</option>
       </select>
     </div>
   </div>
@@ -22,26 +22,28 @@
       </select>
     </div>
     <div class="col-md-9 input-group">
-
       <form class="">
-        <div ng-repeat="t in aktTestat.Kriterien">
+        <div ng-repeat="t in aktTestat.Kriterien" class="panel panel-default">
           <!-- ng-repeat-->
-          <h3>sdfggfsd{{t.Titel}}</h3>
-          <label class="form-control col-md-1" ng-model="bewertung.kriterium">KriteriumX</label>
+          <h3 class="panel-heading">{{t.Kriterium}}</h3>
           <!-- If Score Show -->
-          <input type="text" ng-model="bewertung.scoreX" class="form-control col-md-1" placeholder="Score">
-          <!-- If H2 Show -->
-          <select class="form-control col-md-2" id="sel2">
-            <option>1</option>
-            <option>2</option>
-          </select>
-          <label class="form-control col-md-2" ng-model="bewertung.ImpactX">Impact</label>
-          <input type="text" ng-model="bewertung.impact" class="form-control col-md-1" placeholder="Impact">
+          <div class="panel-body">
+            <input type="text" ng-model="bewertung.scoreX" class="form-control col-md-1" placeholder="Score" ng-show="!t.isH2">
+            <!-- If H2 Show -->
+            <select class="form-control col-md-2" id="sel2" ng-show="t.isH2">
+              <option>0</option>
+              <option>1</option>
+            </select>
+            <div>
+              <h4>Impact:</h4>
+              <label class="form-control col-md-2" ng-model="bewertung.ImpactX">{{t.Impact}}</label>
+            </div>
+          </div>
         </div>
       </form>
       <h3></h3>
       <p class="input-group">
-        <button type="submit" class="btn btn-primary" ng-click="addTestat()">Speichern</button>
+        <button type="submit" class="btn btn-primary" ng-click="addTestat()" ng-show="aktTestat">Speichern</button>
         </span>
       </p>
     </div>
